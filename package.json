@@ -32,15 +32,15 @@
   "dependencies": {
     "@picoturtle/picoturtle-server": "0.0.1",
     "axios": "^0.18.0",
-    "browserify": "^16.2.3",
-    "watchify": "^3.11.1"
+    "browserify": "^16.2.3"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
     "babelify": "^10.0.0",
     "nodemon": "^1.18.10",
-    "pkg": "^4.3.7"
+    "pkg": "^4.3.7",
+    "watchify": "^3.11.1"
   },
   "pkg": {
     "assets": [
