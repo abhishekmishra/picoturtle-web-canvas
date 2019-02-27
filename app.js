@@ -1,6 +1,13 @@
 const TurtleProxy = require('./turtle_proxy').TurtleProxy;
 const { track_turtle } = require('./turtle_fetch_browser');
 
+async function show_turtle(turtle_name) {
+    let oc = document.getElementById('object_code');
+    oc.innerText = '';
+
+    await track_turtle(turtle_name, add_object_code_line);
+}
+
 async function list_turtles() {
     let req = await fetch('/turtle/list');
     let ls = await req.json();
@@ -13,7 +20,7 @@ async function list_turtles() {
         let el = document.getElementById(element);
         el.className += " name-li";
         el.onclick = function () {
-            track_turtle(element, add_object_code_line);
+            show_turtle(element);
         };
     });
 }
@@ -86,12 +93,8 @@ async function my_turtle() {
 async function run_turtle() {
     let turtle_name = await my_turtle();
     await list_turtles();
-    mark_selected(name);
-
-    let oc = document.getElementById('object_code');
-    oc.innerText = '';
-
-    await track_turtle(turtle_name, add_object_code_line);
+    mark_selected(turtle_name);
+    show_turtle(turtle_name);
 };
 
 /**
@@ -115,7 +118,7 @@ if (show_list != null && show_list == 0) {
 }
 
 if (name != null) {
-    track_turtle(name);
+    show_turtle(name);
 } else {
     run_turtle();
 }
