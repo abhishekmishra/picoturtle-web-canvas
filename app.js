@@ -1,11 +1,11 @@
 const TurtleProxy = require('./turtle_proxy').TurtleProxy;
-const { track_turtle } = require('./turtle_fetch_browser');
+const { track_turtle_browser } = require('./turtle_fetch_browser');
 
 async function show_turtle(turtle_name) {
     let oc = document.getElementById('object_code');
     oc.innerText = '';
 
-    await track_turtle(turtle_name, add_object_code_line);
+    await track_turtle_browser(turtle_name, add_object_code_line);
 }
 
 async function list_turtles() {
@@ -20,6 +20,7 @@ async function list_turtles() {
         let el = document.getElementById(element);
         el.className += " name-li";
         el.onclick = function () {
+            mark_selected(element);
             show_turtle(element);
         };
     });

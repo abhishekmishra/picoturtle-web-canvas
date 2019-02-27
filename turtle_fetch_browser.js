@@ -40,4 +40,4 @@ async function fetch_commands(local_turtle, cmd_id, cmd_cb) {
     }
 }
 
-module.exports = { track_turtle };
+module.exports.track_turtle_browser = track_turtle;

@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "@picoturtle/picoturtle-server": "0.0.1",
+    "axios": "^0.18.0",
     "browserify": "^16.2.3",
     "watchify": "^3.11.1"
   },
