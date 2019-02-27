@@ -1,0 +1,28 @@
+language: node_js
+node_js:
+- '10'
+install:
+- npm install
+script:
+- npm run pkg
+notifications:
+  email:
+  - abhishekmishra3@gmail.com
+deploy:
+  - provider: npm
+    email: abhishekmishra3@gmail.com
+    api_key:
+      secure: KHpxwf8cbhbYMburcYEuv9r7hDKpuQJdO/+19IEy6oPJvg7VqVE8MiosJkeCv0gpQmXzywiK+ehxRvF7EoQW2+h4gd0yLCDEBPBtuyjpo6jxnZv4y7px9ZwMy78HqVN494APKDUE7iyPmd5E8lDUt7TJBVktx1JEP5wK4SmuQDbY1UAqTUl7YKc0FuqcHU/mRpqFsIFRjTGdX5KQNPnO6eFfjSsUSOFHG61OYsua1wLy/li7jyBgMGWhkJyDWqP8QhOvo+mrt5mEWeZrJkZJcVMXDDMcS+0FktGH5JxB0zWNhmZ8CqzDH1VqojO+ZG6BdkZ0ec04zjFembNXeNiw6k/d+V9HNuG2D4q9VisbjR218gaIVkUM1t7JnFv/hPdqugWQ4R/HJqpnSx3gtjS7E/nHlEwefAAggODmxNWQXOozR93jbzFHJp7L4pZBDInzWAbn4CMkmvB7aQnJnXWaUgNNUR0fsntmhYMJs3Gs1XGynEmKDqVukd/RvdNV7K4KaCkrslRR/sMc264NzVdWXoIJ5+wCeVS0ZR5Ci/hp2Qbh6AB6A7CnFdAkgYl4YbME1qSrdH6RpV+RvAQ4UYQYI8UQCykyP3LsL9U1hnc8/O7jyLh34ie4vPu/OfBp1eT7qkeeHHjVpTk5lSxFkPdszZRUm7jkRrmx30CqPgF/17M=
+    on:
+      tags: true
+      repo: abhishekmishra/picoturtle-web-canvas
+    skip_cleanup: true
+  - provider: releases
+    api_key:
+      secure: mxtccLpQxi24AQymMf/Hu7yjXaq3yWSzFE1E3igXSdXEtImrIo/TME9F88kr/LwuFT6JvAh7tKDVhebIdVTN06dqs1+qUp4xBWasCquJk/J8GxsavPuVzV15k9HzbbNMdSXAPX5YlCYZ6+Y94M4JjytTVEXMLj2ZAPOymzfkFufvrb+1Ml74YcDvYGnyT6zub/7ZRD9M+o//ff7ef1ZA5WC9jm4mmWkICgmAg+dB2d8gSeIEiBrqEGUCFZD3cuvDAmWlXJOX8mckX0/s2E6QlFxRID4NoaeRTQi9WNItmxtvqf7gwRhJamybe4XMHTg1ecFghg6PYeXznzL8xuGghgCpVmnr9geMJLhQa7rRClQD+Yew0sVaVPs18O8KnwFSZ2O8QQQr0GkH3Np4weNVbTAdBjF0PcFISsW+Q/+Dq66loY5lOp7w1FBrJn5pGrVukkOmUDYiolJEP811K11wRz5Op5+yGRx4tDqdal649DQx1O+S2S/TPBvycwcs0SbdCRC55G93HG6ZF+zj2V/i2VSH4X+NKClGgZn9hZIc6OVD3C63u96C9ybthqdKKdnmg0iyKaSdyBr+FGYb2ysZj7PgFgSk7SnaO0XQb3QAnzL5a5yGPaaB9pJQPUSaJpcytg74dFaI/Jup3OhsuuCxpEYs6Ns9+f0PVMWehXSnSLU=
+    file_glob: true
+    file: "./dist/picoturtle-web-canvas-*"
+    on:
+      tags: true
+      repo: abhishekmishra/picoturtle-web-canvas
+    skip_cleanup: true
