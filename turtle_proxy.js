@@ -60,3 +60,5 @@ export default class TurtleProxy {
         // console.log('colour [' + r + ', ' + g + ', ' + b + '] for - ' + t.name);
     }
 }
+
+module.exports.TurtleProxy = TurtleProxy;

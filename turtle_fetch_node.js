@@ -119,3 +119,6 @@ async function fetch_commands(local_turtle, cmd_id) {
         }
     }
 }
+
+module.exports.list_turtles = list_turtles;
+module.exports.track_turtle = track_turtle;

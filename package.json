@@ -5,8 +5,8 @@
   "main": "index.js",
   "bin": "./bin/www",
   "scripts": {
-    "build": "browserify index.js -o out/bundle.js",
-    "watch": "watchify index.js -o out/bundle.js -v",
+    "build": "browserify app.js -o out/bundle.js",
+    "watch": "watchify app.js -o out/bundle.js -v",
     "start": "node ./bin/www",
     "start-dev": "nodemon ./bin/www",
     "pkg": "pkg . -t node10-linux-x64,node10-win-x64,node10-macos-x64 --out-path ./dist",
@@ -42,7 +42,10 @@
     "pkg": "^4.3.7"
   },
   "pkg": {
-    "assets": "canvas/**/*"
+    "assets": [
+      "canvas/**/*",
+      "out/bundle.js"
+    ]
   },
   "browserify": {
     "transform": [
@@ -50,7 +53,14 @@
         "babelify",
         {
           "presets": [
-            "@babel/preset-env"
+            [
+              "@babel/preset-env",
+              {
+                "targets": {
+                  "chrome": "58"
+                }
+              }
+            ]
           ]
         }
       ]

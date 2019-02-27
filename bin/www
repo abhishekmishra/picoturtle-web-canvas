@@ -9,6 +9,7 @@ var path = require('path');
 let canvasFolder = path.join(__dirname, '..', 'canvas');
 console.log('Canvas Folder is ' + canvasFolder);
 app.use(express.static(canvasFolder));
+app.use(express.static(path.join(__dirname, '..', 'out')));
 
 /**
  * Get port from environment and store in Express.

@@ -1,6 +1,6 @@
 const { Colour } = require('./colour_utils.js');
 const fs = require('fs');
-var Lock = require('lock').Lock;
+const Lock = require('lock').Lock;
 
 var lock = Lock();
 
@@ -18,13 +18,14 @@ class Point {
 class Turtle {
 
     constructor(canvas_id, t = null) {
+        console.log('canvas -> ' + canvas_id);
         this.canvas_id = canvas_id;
+        this.initCanvas();
         this.history = [];
         this.batchEnabled = false;
         if (t != null) {
             this.init(t);
         }
-        this.initCanvas();
         this.location = new Point(this.width / 2, this.height / 2);
         this.location_canvas = new Point(this.location.x, this.height - this.location.y);
         this.angle = 90;
@@ -257,7 +258,5 @@ class Turtle {
     }
 }
 
-module.exports.list_turtles = list_turtles;
-module.exports.track_turtle = track_turtle;
 module.exports.Point = Point;
 module.exports.Turtle = Turtle;
