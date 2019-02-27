@@ -1,0 +1,26 @@
+{
+  "name": "@picoturtle/picoturtle-web-canvas",
+  "version": "0.0.1",
+  "description": "PicoTurtle Web Canvas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abhishekmishra/picoturtle-web-canvas.git"
+  },
+  "keywords": [
+    "picoturtle",
+    "turtle"
+  ],
+  "author": "Abhishek Mishra",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/abhishekmishra/picoturtle-web-canvas/issues"
+  },
+  "homepage": "https://github.com/abhishekmishra/picoturtle-web-canvas#readme",
+  "publishConfig": {
+    "access": "public"
+  }
+}
