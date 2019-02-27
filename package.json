@@ -3,8 +3,14 @@
   "version": "0.0.1",
   "description": "PicoTurtle Web Canvas",
   "main": "index.js",
+  "bin": "./bin/www",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "browserify index.js -o out/bundle.js",
+    "watch": "watchify index.js -o out/bundle.js -v",
+    "start": "node ./bin/www",
+    "start-dev": "nodemon ./bin/www",
+    "pkg": "pkg . -t node10-linux-x64,node10-win-x64,node10-macos-x64 --out-path ./dist",
+    "pkg-local": "pkg . -t node10 --out-path ./dist"
   },
   "repository": {
     "type": "git",
@@ -22,5 +28,32 @@
   "homepage": "https://github.com/abhishekmishra/picoturtle-web-canvas#readme",
   "publishConfig": {
     "access": "public"
+  },
+  "dependencies": {
+    "@picoturtle/picoturtle-server": "0.0.1",
+    "browserify": "^16.2.3",
+    "watchify": "^3.11.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@babel/preset-env": "^7.3.4",
+    "babelify": "^10.0.0",
+    "nodemon": "^1.18.10",
+    "pkg": "^4.3.7"
+  },
+  "pkg": {
+    "assets": "canvas/**/*"
+  },
+  "browserify": {
+    "transform": [
+      [
+        "babelify",
+        {
+          "presets": [
+            "@babel/preset-env"
+          ]
+        }
+      ]
+    ]
   }
 }
