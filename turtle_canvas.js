@@ -54,7 +54,7 @@ class Turtle {
         this.angle = this.orig_t.angle;
         this.canvas_angle = this.angle + 180;
         this.pen = this.orig_t.pen;
-        this.pen_width = this.orig_t.pen_width;
+        this.penwidth(this.orig_t.pen_width);
         this.pencolour(new Colour(
             this.orig_t.colour.r,
             this.orig_t.colour.g,
