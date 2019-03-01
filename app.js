@@ -1,11 +1,14 @@
 const TurtleProxy = require('./turtle_proxy').TurtleProxy;
 const { track_turtle_browser } = require('./turtle_fetch_browser');
+const { Turtle } = require('./turtle_canvas');
+
+var local_turtle = new Turtle("turtle_canvas");
 
 async function show_turtle(turtle_name) {
     let oc = document.getElementById('object_code');
     oc.innerText = '';
 
-    await track_turtle_browser(turtle_name, add_object_code_line);
+    await track_turtle_browser(local_turtle, turtle_name, add_object_code_line);
 }
 
 async function list_turtles() {
@@ -67,7 +70,7 @@ async function square(t, side) {
 }
 
 async function poly(t, side, angle, incs, inca) {
-    for (var i = 0; i < 10; i++) {
+    for (var i = 0; i < 100; i++) {
         await t.forward(side);
         await t.right(angle);
         side += incs;
@@ -75,9 +78,7 @@ async function poly(t, side, angle, incs, inca) {
     }
 }
 
-async function my_turtle() {
-    var t = new TurtleProxy();
-    let state = await t.init();
+async function my_turtle(t) {
     await t.pencolour(255, 0, 0);
     await t.pendown();
     // for(var i = 0; i < 2; i++) {
@@ -92,10 +93,15 @@ async function my_turtle() {
 }
 
 async function run_turtle() {
-    let turtle_name = await my_turtle();
+    var t = new TurtleProxy();
+    let state = await t.init();
+    local_turtle.init(state);
+    let turtle_name = state.name;
     await list_turtles();
     mark_selected(turtle_name);
     show_turtle(turtle_name);
+
+    await my_turtle(t);
 };
 
 /**
