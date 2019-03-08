@@ -34,9 +34,21 @@ class Turtle {
         this.ctx.lineWidth = 1;
     }
 
-    init(t) {
+    resetOptions() {
+        this.initOptions(null);
+    }
+
+    initOptions(options) {
+        if (!options) options = {};
+        if (!('draw_turtle' in options)) options.draw_turtle = true;
+        this.options = options;
+    }
+
+    init(t, options) {
+        this.initOptions(options);
+
         this.orig_t = t;
-        this.initTurtle();
+        this.reset();
         this.clearHistory();
     }
 
@@ -160,30 +172,32 @@ class Turtle {
     }
 
     drawTurtle() {
-        this.ctx.save();
-        let hexColour = this.ctx.strokeStyle;
-        this.ctx.strokeStyle = 'black';
-        this.ctx.fillStyle = 'red';
-        this.ctx.lineWidth = 3;
-        // this.ctx.fillRect(this.location.x - 5, this.location.y - 5, 10, 10);
+        if (this.options.draw_turtle) {
+            this.ctx.save();
+            let hexColour = this.ctx.strokeStyle;
+            this.ctx.strokeStyle = 'black';
+            this.ctx.fillStyle = 'red';
+            this.ctx.lineWidth = 3;
+            // this.ctx.fillRect(this.location.x - 5, this.location.y - 5, 10, 10);
 
-        let d = 25;
-        let theta1 = (this.canvas_angle - 145) * Math.PI / 180;
-        let y2 = d * (Math.sin(theta1)) + this.location_canvas.y;
-        let x2 = d * (Math.cos(theta1)) + this.location_canvas.x;
+            let d = 25;
+            let theta1 = (this.canvas_angle - 145) * Math.PI / 180;
+            let y2 = d * (Math.sin(theta1)) + this.location_canvas.y;
+            let x2 = d * (Math.cos(theta1)) + this.location_canvas.x;
 
-        let theta2 = (this.canvas_angle + 145) * Math.PI / 180;
-        let y3 = d * (Math.sin(theta2)) + this.location_canvas.y;
-        let x3 = d * (Math.cos(theta2)) + this.location_canvas.x;
+            let theta2 = (this.canvas_angle + 145) * Math.PI / 180;
+            let y3 = d * (Math.sin(theta2)) + this.location_canvas.y;
+            let x3 = d * (Math.cos(theta2)) + this.location_canvas.x;
 
-        this.ctx.beginPath();
-        this.ctx.moveTo(this.location_canvas.x, this.location_canvas.y);
-        this.ctx.lineTo(x2, y2);
-        this.ctx.lineTo(x3, y3);
-        this.ctx.lineTo(this.location_canvas.x, this.location_canvas.y);
-        this.ctx.stroke();
+            this.ctx.beginPath();
+            this.ctx.moveTo(this.location_canvas.x, this.location_canvas.y);
+            this.ctx.lineTo(x2, y2);
+            this.ctx.lineTo(x3, y3);
+            this.ctx.lineTo(this.location_canvas.x, this.location_canvas.y);
+            this.ctx.stroke();
 
-        this.ctx.restore();
+            this.ctx.restore();
+        }
     }
 
     exec() {
@@ -238,6 +252,15 @@ class Turtle {
             } else if (arguments.length == 2) {
                 this[command](arguments[1]);
             }
+        }
+    }
+
+    /**
+     * Add the command to history but don't draw anything
+     */
+    batchAdd() {
+        if (arguments.length > 0) {
+            this.addToHistory(arguments);
         }
     }
 

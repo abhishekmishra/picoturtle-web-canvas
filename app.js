@@ -8,7 +8,12 @@ async function show_turtle(turtle_name) {
     let oc = document.getElementById('object_code');
     oc.innerText = '';
 
-    await track_turtle_browser(local_turtle, turtle_name, add_object_code_line);
+    await track_turtle_browser(local_turtle, turtle_name, {
+        draw_turtle: true,
+        animate: false,
+        draw_on_stop: true,
+        cmd_cb: add_object_code_line
+    });
 }
 
 async function list_turtles() {
@@ -99,9 +104,8 @@ async function run_turtle() {
     let turtle_name = state.name;
     await list_turtles();
     mark_selected(turtle_name);
-    show_turtle(turtle_name);
-
     await my_turtle(t);
+    show_turtle(turtle_name);
 };
 
 /**
