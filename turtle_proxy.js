@@ -251,12 +251,12 @@ async function font(f) {
     await t.font(f);
 }
 
-async function filltext(t) {
-    await t.filltext(t);
+async function filltext(text) {
+    await t.filltext(text);
 }
 
-async function stroketext(t) {
-    await t.stroketext(t);
+async function stroketext(text) {
+    await t.stroketext(text);
 }
 
 async function print(text) {
