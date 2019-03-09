@@ -1,6 +1,6 @@
 {
   "name": "@picoturtle/picoturtle-web-canvas",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "PicoTurtle Web Canvas",
   "main": "index.js",
   "bin": "./bin/www",
@@ -30,7 +30,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@picoturtle/picoturtle-server": "0.0.3",
+    "@picoturtle/picoturtle-server": "0.0.7",
     "axios": "^0.18.0",
     "browserify": "^16.2.3"
   },

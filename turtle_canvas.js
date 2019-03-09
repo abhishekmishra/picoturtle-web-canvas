@@ -32,6 +32,7 @@ class Turtle {
         this.canvas_angle = this.angle + 180;
         this.pen_width = 1;
         this.ctx.lineWidth = 1;
+        this.font_str = null;
     }
 
     resetOptions() {
@@ -72,6 +73,7 @@ class Turtle {
             this.orig_t.colour.g,
             this.orig_t.colour.b,
             this.orig_t.colour.a));
+        this.font_str = this.orig_t.font_str;
         this.drawTurtle();
     }
 
@@ -128,6 +130,10 @@ class Turtle {
         this.ctx.stroke();
     }
 
+    back(d) {
+        this.forward(-d);
+    }
+
     right(angle) {
         this.angle = this.angle - angle;
         this.canvas_angle = this.canvas_angle + angle;
@@ -158,6 +164,37 @@ class Turtle {
         this.initTurtle();
     }
 
+    font(f) {
+        this.font_str = f;
+    }
+
+    filltext(text) {
+        let canvas_theta = this.canvas_angle * Math.PI / 180;
+        this.ctx.save();
+        this.ctx.font = this.font_str;
+        this.ctx.strokeStyle = this.colour.hex;
+        this.ctx.fillStyle = this.colour.hex;
+        this.ctx.lineWidth = this.pen_width;
+        this.ctx.translate(this.location_canvas.x, this.location_canvas.y);
+        this.ctx.rotate(canvas_theta);
+        // console.log('angle -> ' + canvas_theta + ' x = ' + this.location_canvas.x + ' y = ' + this.location_canvas.y);
+        this.ctx.fillText(text, 0, 0);
+        this.ctx.restore();
+    }
+
+    stroketext(text) {
+        let canvas_theta = this.canvas_angle * Math.PI / 180;
+        this.ctx.save();
+        this.ctx.font = this.font_str;
+        this.ctx.strokeStyle = this.colour.hex;
+        this.ctx.fillStyle = this.colour.hex;
+        this.ctx.lineWidth = this.pen_width;
+        this.ctx.translate(this.location_canvas.x, this.location_canvas.y);
+        this.ctx.rotate(canvas_theta);
+        // console.log('angle -> ' + canvas_theta + ' x = ' + this.location_canvas.x + ' y = ' + this.location_canvas.y);
+        this.ctx.strokeText(text, 0, 0);
+        this.ctx.restore();
+    }
     // home() {
     //     this.location = new Point(this.width / 2, this.height / 2);
     //     this.angle = 0;
@@ -195,6 +232,14 @@ class Turtle {
             this.ctx.lineTo(x3, y3);
             this.ctx.lineTo(this.location_canvas.x, this.location_canvas.y);
             this.ctx.stroke();
+
+            // let canvas_theta = this.canvas_angle * Math.PI / 180;
+            // this.ctx.font = '30pt Sans Serif';
+            // this.ctx.fillStyle = 'black';
+            // this.ctx.lineWidth = 1;
+            // this.ctx.translate(this.location_canvas.x, this.location_canvas.y);
+            // this.ctx.rotate(canvas_theta);
+            // this.ctx.strokeText('🐢', 0, 0);
 
             this.ctx.restore();
         }
