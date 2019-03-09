@@ -1,4 +1,4 @@
-const TurtleProxy = require('./turtle_proxy').TurtleProxy;
+const TurtleProxy = require('./turtle_proxy').Turtle;
 const { track_turtle_browser } = require('./turtle_fetch_browser');
 const { Turtle } = require('./turtle_canvas');
 
