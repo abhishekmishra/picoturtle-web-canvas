@@ -232,7 +232,6 @@ async function forward(d) {
 }
 
 async function back(d) {
-    console.log('back');
     await t.back(d);
 }
 
