@@ -93,11 +93,11 @@ class Turtle {
     }
 
     penup() {
-        this.pen = true;
+        this.pen = false;
     }
 
     pendown() {
-        this.pen = false;
+        this.pen = true;
     }
 
     penwidth(w) {
@@ -120,9 +120,9 @@ class Turtle {
 
         this.ctx.moveTo(this.location_canvas.x, this.location_canvas.y);
         if (this.pen) {
-            this.ctx.moveTo(cx2, cy2);
-        } else {
             this.ctx.lineTo(cx2, cy2);
+        } else {
+            this.ctx.moveTo(cx2, cy2);
         }
 
         this.location = new Point(x2, y2);
@@ -134,6 +134,38 @@ class Turtle {
         this.forward(-d);
     }
 
+    goto(x, y) {
+        let new_location = new Point(x, y);
+        let new_location_canvas = new Point(x, this.height - y);
+
+        // console.log('current point is ' + this.location.x + ', ' + this.location.y + ', new point is ' + x2 + ', ' + y2);
+        this.ctx.beginPath();
+
+        this.ctx.moveTo(this.location_canvas.x, this.location_canvas.y);
+        if (this.pen) {
+            this.ctx.lineTo(new_location_canvas.x, new_location_canvas.y);
+        } else {
+            this.ctx.moveTo(new_location_canvas.x, new_location_canvas.y);
+        }
+
+        this.location = new_location;
+        this.location_canvas = new_location_canvas;
+        this.ctx.stroke();
+    }
+
+    setx(x) {
+        this.goto(x, this.location.y);
+    }
+
+    sety(y) {
+        this.goto(this.location.x, y);
+    }
+
+    home() {
+        this.goto(this.orig_t.location.x, this.orig_t.location.y);
+        this.heading(this.orig_t.angle);
+    }
+
     right(angle) {
         this.angle = this.angle - angle;
         this.canvas_angle = this.canvas_angle + angle;
@@ -142,6 +174,11 @@ class Turtle {
     left(angle) {
         this.angle = this.angle + angle;
         this.canvas_angle = this.canvas_angle - angle;
+    }
+
+    heading(angle) {
+        this.angle = angle;
+        this.canvas_angle = this.angle + 180;
     }
 
     stop() {
