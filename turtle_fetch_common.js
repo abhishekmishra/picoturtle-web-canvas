@@ -53,11 +53,9 @@ async function fetch_commands_bulk(cmd_id, options) {
     let cmdres = await options.getCommandsBulkFn(options.picoturtle_server_url, options.local_turtle.name, cmd_id, options.limit);
     let turtle_stopped = false;
 
-    if (!options.draw_on_stop) {
-        if (options.animate || cmd_id == 0) {
-            options.local_turtle.reset();
-            options.local_turtle.batchStart();
-        }
+    if (options.animate || cmd_id == 0) {
+        options.local_turtle.reset();
+        options.local_turtle.batchStart();
     }
     for (var i = 0; i < cmdres.commands.length; i++) {
         let cmd = cmdres.commands[i];
@@ -89,10 +87,8 @@ async function fetch_commands_bulk(cmd_id, options) {
             cmd_id += 1;
         }
     }
-    if (!options.draw_on_stop) {
-        if (options.animate || turtle_stopped) {
-            options.local_turtle.batchEnd();
-        }
+    if (options.animate || turtle_stopped) {
+        options.local_turtle.batchEnd();
     }
 
     if (options.draw_on_stop && turtle_stopped) {

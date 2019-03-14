@@ -11,7 +11,7 @@ async function show_turtle(turtle_name) {
     await track_turtle_browser(local_turtle, turtle_name, {
         draw_turtle: true,
         animate: false,
-        draw_on_stop: true,
+        draw_on_stop: false,
         cmd_cb: add_object_code_line
     });
 }
@@ -67,13 +67,6 @@ function add_object_code_line(cmd_args) {
 
 list_turtles();
 
-async function square(t, side) {
-    for (var i = 0; i < 4; i++) {
-        await t.forward(side);
-        await t.right(90);
-    }
-}
-
 async function poly(t, side, angle, incs, inca) {
     for (var i = 0; i < 100; i++) {
         await t.forward(side);
@@ -88,12 +81,6 @@ async function my_turtle(t) {
     await t.back(50);
     await t.pencolour(255, 0, 0);
     await t.pendown();
-    // for(var i = 0; i < 2; i++) {
-    //     await t.penup();
-    //     await t.forward(60);
-    //     await t.pendown();
-    //     await square(t, 50);
-    // }
     await poly(t, 5, 120, 3, 0);
     await t.penup();
     await t.forward(100);
@@ -112,14 +99,13 @@ async function my_turtle(t) {
     await t.home();
     await t.setpos(10, 10);
     await t.pendown();
-
     await t.pencolour(255, 128, 0);
     await t.penwidth(5);
     await t.forward(150);
-    let s = await t.state();
     await t.setx(40);
     await t.sety(100);
-    await t.heading(90);
+    await t.heading(0);
+    let s = await t.state();
     console.log(s);
     await t.stop();
     return t.name;

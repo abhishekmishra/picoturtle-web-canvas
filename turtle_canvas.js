@@ -29,7 +29,7 @@ class Turtle {
         this.location = new Point(this.width / 2, this.height / 2);
         this.location_canvas = new Point(this.location.x, this.height - this.location.y);
         this.angle = 90;
-        this.canvas_angle = this.angle + 180;
+        this.canvas_angle = 360 - this.angle;
         this.pen_width = 1;
         this.ctx.lineWidth = 1;
         this.font_str = null;
@@ -65,7 +65,7 @@ class Turtle {
         this.location = this.orig_t.location;
         this.location_canvas = new Point(this.location.x, this.height - this.location.y);
         this.angle = this.orig_t.angle;
-        this.canvas_angle = this.angle + 180;
+        this.canvas_angle = 360 - this.angle;
         this.pen = this.orig_t.pen;
         this.penwidth(this.orig_t.pen_width);
         this.pencolour(new Colour(
@@ -178,7 +178,7 @@ class Turtle {
 
     heading(angle) {
         this.angle = angle;
-        this.canvas_angle = this.angle + 180;
+        this.canvas_angle = 360 - this.angle;
     }
 
     stop() {
