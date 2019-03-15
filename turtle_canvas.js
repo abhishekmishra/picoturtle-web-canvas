@@ -42,6 +42,7 @@ class Turtle {
     initOptions(options) {
         if (!options) options = {};
         if (!('draw_turtle' in options)) options.draw_turtle = true;
+        if (!('turtle_colour' in options)) options.turtle_colour = 'black';
         this.options = options;
     }
 
@@ -248,8 +249,7 @@ class Turtle {
     drawTurtle() {
         if (this.options.draw_turtle) {
             this.ctx.save();
-            let hexColour = this.ctx.strokeStyle;
-            this.ctx.strokeStyle = 'black';
+            this.ctx.strokeStyle = this.options.turtle_colour;
             this.ctx.fillStyle = 'red';
             this.ctx.lineWidth = 3;
             // this.ctx.fillRect(this.location.x - 5, this.location.y - 5, 10, 10);

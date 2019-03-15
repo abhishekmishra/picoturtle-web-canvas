@@ -10,6 +10,7 @@ async function show_turtle(turtle_name) {
 
     await track_turtle_browser(local_turtle, turtle_name, {
         draw_turtle: true,
+        turtle_colour: 'MediumOrchid',
         animate: false,
         draw_on_stop: false,
         cmd_cb: add_object_code_line
