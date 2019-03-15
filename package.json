@@ -1,6 +1,6 @@
 {
   "name": "@picoturtle/picoturtle-web-canvas",
-  "version": "0.0.7",
+  "version": "0.0.9",
   "description": "PicoTurtle Web Canvas",
   "main": "index.js",
   "bin": "./bin/www",
