@@ -1,8 +1,18 @@
 const { Colour } = require('./colour_utils.js');
 const fs = require('fs');
 const Lock = require('lock').Lock;
+const FileSaver = require('file-saver');
 
 var lock = Lock();
+
+function inElectron() {
+    var userAgent = navigator.userAgent.toLowerCase();
+    if (userAgent.indexOf(' electron/') > -1) {
+        // Electron-specific code
+        return true;
+    }
+    return false;
+}
 
 class Point {
     constructor(x, y) {
@@ -75,6 +85,11 @@ class Turtle {
             this.orig_t.colour.b,
             this.orig_t.colour.a));
         this.font_str = this.orig_t.font_str;
+        this._canvas_size = this.orig_t.canvas_size;
+        this.width = this._canvas_size.width;
+        this.height = this._canvas_size.height;
+        this.canvas.width = this.width;
+        this.canvas.height = this.height;
         this.drawTurtle();
     }
 
@@ -238,6 +253,16 @@ class Turtle {
     //     this.angle = 0;
     // }
 
+    canvas_size(width, height) {
+        console.log('Setting canvas size to ' + width + '/' + height);
+        this._canvas_size.width = width;
+        this._canvas_size.height = height;
+        this.width = width;
+        this.height = height;
+        this.canvas.width = this.width;
+        this.canvas.height = this.height;
+    }
+
     addToHistory(cmd) {
         this.history.push(cmd);
     }
@@ -293,6 +318,8 @@ class Turtle {
                         this[cmdArgs[0]]();
                     } else if (cmdArgs.length == 2) {
                         this[cmdArgs[0]](cmdArgs[1]);
+                    } else if (cmdArgs.length == 3) {
+                        this[cmdArgs[0]](cmdArgs[1], cmdArgs[2]);
                     }
                 }
             }
@@ -305,6 +332,10 @@ class Turtle {
             } else if (arguments.length == 2) {
                 this[command](arguments[1]);
             }
+            else if (arguments.length == 3) {
+                this[command](arguments[1], arguments[2]);
+            }
+
             if (!this.batchEnabled) {
                 this.drawTurtle();
             }
@@ -321,6 +352,8 @@ class Turtle {
                 this[cmdArgs[0]]();
             } else if (cmdArgs.length == 2) {
                 this[cmdArgs[0]](cmdArgs[1]);
+            } else if (cmdArgs.length == 3) {
+                this[cmdArgs[0]](cmdArgs[1], cmdArgs[2]);
             }
         }
     }
@@ -333,6 +366,8 @@ class Turtle {
                 this[command]();
             } else if (arguments.length == 2) {
                 this[command](arguments[1]);
+            } else if (arguments.length == 3) {
+                this[command](arguments[1], arguments[2]);
             }
         }
     }
@@ -360,6 +395,16 @@ class Turtle {
         fs.writeFile(filePath, base64Data, 'base64', function (err) {
             console.log(err);
         });
+    }
+
+    export_img(filename) {
+        if (inElectron()) {
+            this.export(filename);
+        } else {
+            this.canvas.toBlob(function (blob) {
+                saveAs(blob, filename);
+            });
+        }
     }
 }
 

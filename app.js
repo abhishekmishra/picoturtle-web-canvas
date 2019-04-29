@@ -78,6 +78,7 @@ async function poly(t, side, angle, incs, inca) {
 }
 
 async function my_turtle(t) {
+    await t.canvas_size(800, 640);
     await t.penup();
     await t.back(50);
     await t.pencolour(255, 0, 0);
@@ -108,6 +109,7 @@ async function my_turtle(t) {
     await t.heading(0);
     let s = await t.state();
     console.log(s);
+    await t.export_img(s.name + '.png');
     await t.stop();
     return t.name;
 }

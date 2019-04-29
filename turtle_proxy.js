@@ -239,6 +239,21 @@ class Turtle {
         // console.log('state for - ' + t.name);
         return t;
     }
+
+    async canvas_size(width, height) {
+        let t = await this.turtle_request('canvas_size', [
+            { k: 'width', v: width },
+            { k: 'height', v: height }
+        ]);
+        return t;
+    }
+
+    async export_img(filename) {
+        let t = await this.turtle_request('export_img', [
+            { k: 'filename', v: filename }
+        ]);
+        return t;
+    }
 }
 
 async function create_turtle(options) {
@@ -330,6 +345,15 @@ async function state() {
     return await t.state();
 }
 
+async function canvas_size(width, height) {
+    return await t.canvas_size(width, height);
+}
+
+async function export_img(filename) {
+    return await t.export_img(filename);
+}
+
+
 async function print(text) {
     console.log(text);
     if (!(typeof turtle_console_out === 'undefined' || turtle_console_out === null)) {
@@ -362,3 +386,5 @@ module.exports.font = font;
 module.exports.filltext = filltext;
 module.exports.stroketext = stroketext;
 module.exports.state = state;
+module.exports.canvas_size = canvas_size;
+module.exports.export_img = export_img;
