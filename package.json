@@ -30,8 +30,8 @@
     "access": "public"
   },
   "dependencies": {
-    "@picoturtle/picoturtle-server": "0.0.12",
-    "axios": "^0.18.0",
+    "@picoturtle/picoturtle-server": "0.0.13",
+    "axios": "^0.18.1",
     "browserify": "^16.2.3",
     "express": "^4.16.4",
     "file-saver": "^2.0.1",
