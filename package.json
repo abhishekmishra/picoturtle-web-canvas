@@ -32,17 +32,17 @@
   "dependencies": {
     "@picoturtle/picoturtle-server": "0.0.13",
     "axios": "^0.18.1",
-    "browserify": "^16.2.3",
-    "express": "^4.16.4",
-    "file-saver": "^2.0.1",
+    "browserify": "^16.5.1",
+    "express": "^4.17.1",
+    "file-saver": "^2.0.2",
     "lock": "^1.1.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/core": "^7.9.0",
+    "@babel/preset-env": "^7.9.5",
     "babelify": "^10.0.0",
-    "nodemon": "^1.18.10",
-    "pkg": "^4.3.7",
+    "nodemon": "^1.19.4",
+    "pkg": "^4.4.7",
     "watchify": "^3.11.1"
   },
   "pkg": {
