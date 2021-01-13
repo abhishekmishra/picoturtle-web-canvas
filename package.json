@@ -6,7 +6,6 @@
   "bin": "./bin/www",
   "scripts": {
     "build": "browserify app.js -o out/bundle.js",
-    "watch": "watchify app.js -o out/bundle.js -v",
     "start": "node ./bin/www",
     "start-dev": "nodemon ./bin/www",
     "pkg": "pkg . -t node10-linux-x64,node10-win-x64,node10-macos-x64 --out-path ./dist",
@@ -42,8 +41,7 @@
     "@babel/preset-env": "^7.12.11",
     "babelify": "^10.0.0",
     "nodemon": "^2.0.7",
-    "pkg": "^4.4.9",
-    "watchify": "^3.11.1"
+    "pkg": "^4.4.9"
   },
   "pkg": {
     "assets": [
